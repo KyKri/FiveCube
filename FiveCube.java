@@ -1,7 +1,6 @@
 /*
 CS560 Group Project
 2016
-
 Solves a 5x5x5 cube
 */
 
@@ -14,38 +13,11 @@ public class FiveCube{
 		Graph graph = new Graph(arr);
 		for(Vertex v : graph.vertices)
 			System.out.println(v.num);
-		dfs(graph);			//throws nullPointerException until findAdjacent is implemented
+		//dfs(graph);			//throws nullPointerException until findAdjacent is implemented
 		//System.out.println((graph.vertices[0]).finish);		//for testing dfs
 		//System.out.println(((graph.vertices[0]).parent).num);	//for testing dfs
-		//printSolution();
+		printSolution();
 	}
-
-	/*
-	//makes the cube 5x5x5 that will be filled
-	public makeCube(){
-
-	}
-
-	//makes the 25 pieces to play with
-	public makePieces(){
-
-	}
-
-	//this is the algorithm that will assemble the pieces
-	public fillCube(){
-
-	}
-
-	//finds all possible moves
-	public makeMove(){
-
-	}
-
-	//helps makeMove find all orientations of each piece
-	public findOrientations(){
-
-	}
-	*/
 
 	//!!!Note: Graph and Vertex class may change depending on how
 	//cube and pieces are represented
@@ -81,7 +53,7 @@ public class FiveCube{
 		//Vertex will encapsulate each piece, this is so that each piece can be
 		//neatly fit into the graph
 		//once depth first search finds the correct order of vertices,
-		//we can just take the pieces our of each vertex
+		//we can just take the pieces out of each vertex
 		public Vertex(int n){/*public Vertex(Piece piece, int n){*/
 			num = n;
 			color = "";
@@ -128,23 +100,20 @@ public class FiveCube{
 
 	//prints out a matrix representation of the pieces in the cube
 	public void printSolution(){
-		int a[] = new int[125];
-		for(int i=0; i<125;i++)
+		int a[] = new int[27];
+		for(int i=0; i<27;i++)
 			a[i]=i;
 
-		for (int i=0; i<5; i++){
+		for (int i=0; i<3; i++){
 			System.out.println("plane #"+(i+1));
-			System.out.println("|--"+a[20+25*i]+"--|--"+a[21+25*i]+"--|--"+a[22+25*i]+"--|--"+a[23+25*i]+"--|--"+a[24+25*i]+"--|");
-			System.out.println("|--"+a[15+25*i]+"--|--"+a[16+25*i]+"--|--"+a[17+25*i]+"--|--"+a[18+25*i]+"--|--"+a[19+25*i]+"--|");
-			System.out.println("|--"+a[10+25*i]+"--|--"+a[11+25*i]+"--|--"+a[12+25*i]+"--|--"+a[13+25*i]+"--|--"+a[14+25*i]+"--|");
-			System.out.println("|--"+a[5+25*i]+"--|--"+a[6+25*i]+"--|--"+a[7+25*i]+"--|--"+a[8+25*i]+"--|--"+a[9+25*i]+"--|");
-			System.out.println("|--"+a[0+25*i]+"--|--"+a[1+25*i]+"--|--"+a[2+25*i]+"--|--"+a[3+25*i]+"--|--"+a[4+25*i]+"--|");
-			System.out.println("------------------------------------");
+			System.out.println("|--"+a[6+9*i]+"--|--"+a[7+9*i]+"--|--"+a[8+9*i]+"--|");
+			System.out.println("|--"+a[3+9*i]+"--|--"+a[4+9*i]+"--|--"+a[5+9*i]+"--|");
+			System.out.println("|--"+a[0+9*i]+"--|--"+a[1+9*i]+"--|--"+a[2+9*i]+"--|");
+			System.out.println("--------------------------");
 		}
 	}
 
 	public static void main(String[] args){
 		new FiveCube();
 	}
-	
 }
