@@ -104,8 +104,9 @@ public class FiveCube{
 			for(int i=0; i<adjacent[v.num].size(); i++){
 				arrVert[i] = adjacent[v.num].get(i);
 			}
+
 			for (int i=0; i<arr.length; i++)
-				arr[i]=arrVert[i];
+				arr[i]=arrVert[i+1];
 
 			return arr;
 		}
