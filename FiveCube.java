@@ -1,22 +1,86 @@
 /*
 CS560 Group Project
 2016
-Solves a 5x5x5 cube
+Solves a 3x3x3 cube, ironically
 */
+import java.util.LinkedList;
 
 public class FiveCube{
+	LinkedList<Vertex>[] adjacent;
 	private int time;
 	
 	//starts the program
 	public FiveCube(){
-		int[] arr = {1,2,3,4,5};
+		int[] arr = {0,1,2,3,4,5};
 		Graph graph = new Graph(arr);
-		for(Vertex v : graph.vertices)
-			System.out.println(v.num);
-		//dfs(graph);			//throws nullPointerException until findAdjacent is implemented
-		//System.out.println((graph.vertices[0]).finish);		//for testing dfs
-		//System.out.println(((graph.vertices[0]).parent).num);	//for testing dfs
+		AdjList adj = new AdjList(graph.vertices);
+		dfs(graph);			//throws nullPointerException until findAdjacent is implemented
+		System.out.println((graph.vertices[3]).finish);		//for testing dfs
+		System.out.println(((graph.vertices[3]).parent));	//for testing dfs
 		printSolution();
+	}
+
+	//This is terrible. I made this just to test depth first search
+	//we need to improve this class so that it can be used for
+	//6 or 7 pieces
+	private class AdjList{
+
+		public AdjList(Vertex[] vertArr){
+			Vertex a = vertArr[0];
+			Vertex b = vertArr[1];
+			Vertex c = vertArr[2];
+			Vertex d = vertArr[3];
+			Vertex e = vertArr[4];
+			Vertex f = vertArr[5];
+
+			adjacent = new LinkedList[vertArr.length];
+
+			for(int i=0; i<vertArr.length; i++){
+				adjacent[i] = new LinkedList<Vertex>();
+			}
+
+			adjacent[a.num].add(a);
+			adjacent[a.num].add(b);
+			adjacent[a.num].add(c);
+			adjacent[a.num].add(d);
+			adjacent[a.num].add(e);
+			adjacent[a.num].add(f);
+
+			adjacent[b.num].add(b);
+			adjacent[b.num].add(a);
+			adjacent[b.num].add(c);
+			adjacent[b.num].add(d);
+			adjacent[b.num].add(e);
+			adjacent[b.num].add(f);
+
+			adjacent[c.num].add(c);
+			adjacent[c.num].add(a);
+			adjacent[c.num].add(b);
+			adjacent[c.num].add(d);
+			adjacent[c.num].add(e);
+			adjacent[c.num].add(f);
+
+			adjacent[d.num].add(d);
+			adjacent[d.num].add(a);
+			adjacent[d.num].add(b);
+			adjacent[d.num].add(c);
+			adjacent[d.num].add(e);
+			adjacent[d.num].add(f);
+
+			adjacent[e.num].add(e);
+			adjacent[e.num].add(a);
+			adjacent[e.num].add(b);
+			adjacent[e.num].add(c);
+			adjacent[e.num].add(d);
+			adjacent[e.num].add(f);
+
+			adjacent[f.num].add(f);
+			adjacent[f.num].add(a);
+			adjacent[f.num].add(b);
+			adjacent[f.num].add(c);
+			adjacent[f.num].add(d);
+			adjacent[f.num].add(e);
+		}
 	}
 
 	//!!!Note: Graph and Vertex class may change depending on how
@@ -34,8 +98,16 @@ public class FiveCube{
 		}
 
 		//TO-DO Implement adjacency list and accessor method
-		public Vertex[] findAdjacent(Vertex v){
-			return null;
+		public Vertex[] getAdjacent(Vertex v){
+			Vertex[] arrVert = new Vertex[adjacent[v.num].size()];
+			Vertex[] arr = new Vertex[arrVert.length-1];
+			for(int i=0; i<adjacent[v.num].size(); i++){
+				arrVert[i] = adjacent[v.num].get(i);
+			}
+			for (int i=0; i<arr.length; i++)
+				arr[i]=arrVert[i];
+
+			return arr;
 		}
 	}
 
@@ -64,7 +136,6 @@ public class FiveCube{
 		}
 	}
 
-	/* !!!NOTE: Not complete yet!!! Not even tested yet*/
 	//How to use results: (Disclaimer: this is in theory) 
 	//find Vertex with least finish time and follow the parents
 	//backwards to assemble cube
@@ -87,7 +158,8 @@ public class FiveCube{
 		time += 1;
 		u.dist = time;
 		u.color = "gray";
-		for(Vertex v : g.findAdjacent(u)){			//!!!Note: findAdjacent not yet implemented
+		for(Vertex v : g.getAdjacent(u)){			
+			System.out.println(v.num+"'s color is: "+v.color); //for testing only
 			if (v.color == "white"){
 				v.parent = u;
 				dfsVisit(g,v);
