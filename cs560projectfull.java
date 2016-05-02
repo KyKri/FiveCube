@@ -22,27 +22,27 @@ public class cs560project {
 					count++;
 					}
 
-		piece3D p = new piece3D('A',4);
+		piece3D a = new piece3D('A',4);
 		p.setCube(0,0,0,0);
 		p.setCube(1,0,1,0);
 		p.setCube(2,0,1,1);
 		p.setCube(3,0,0,1);
 		p.findAllPossiblePositionsAsBitmaps();
 
-		piece3D p = new piece3D('B',4);
+		piece3D b = new piece3D('B',4);
 		p.setCube(0,0,0,0);
 		p.setCube(1,1,0,0);
 		p.setCube(2,1,0,1);
 		p.setCube(3,2,0,1);
 		p.findAllPossiblePositionsAsBitmaps();
 
-		piece3D p = new piece3D('C',3);
+		piece3D c = new piece3D('C',3);
 		p.setCube(0,0,0,0);
 		p.setCube(1,0,0,1);
 		p.setCube(2,1,0,0);
 		p.findAllPossiblePositionsAsBitmaps();
 
-		piece3D p = new piece3D('D',5);
+		piece3D d = new piece3D('D',5);
 		p.setCube(0,0,0,0);
 		p.setCube(1,0,0,1);
 		p.setCube(2,1,0,1);
@@ -50,7 +50,7 @@ public class cs560project {
 		p.setCube(4,1,1,1);
 		p.findAllPossiblePositionsAsBitmaps();
 
-		piece3D p = new piece3D('E',5);
+		piece3D e = new piece3D('E',5);
 		p.setCube(0,0,0,0);
 		p.setCube(1,0,1,0);
 		p.setCube(2,1,0,0);
@@ -58,13 +58,13 @@ public class cs560project {
 		p.setCube(4,1,0,1);
 		p.findAllPossiblePositionsAsBitmaps();
 
-		piece3D p = new piece3D('F',3);
+		piece3D f = new piece3D('F',3);
 		p.setCube(0,0,0,0);
 		p.setCube(1,1,0,0);
 		p.setCube(2,2,0,0);
 		p.findAllPossiblePositionsAsBitmaps();
 	
-		piece3D p = new piece3D('G',3);
+		piece3D g = new piece3D('G',3);
 		p.setCube(0,0,0,0);
 		p.setCube(1,0,1,0);
 		p.setCube(2,0,2,0);
