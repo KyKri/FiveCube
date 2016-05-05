@@ -25,7 +25,7 @@ public class cs560project
     {
       //--- fill 3x3x3 char matrix with piece ID's per solution piece placements decoded from solution bitmaps
       
-        for ( int whichPiece = 0 ; whichPiece < 7 ; whichPiece++ )
+        for ( int whichPiece = 0 ; whichPiece < P ; whichPiece++ )
           {
             char idChar = pieces[whichPiece].pieceID ;
             int integratedBitmap = solution[whichPiece] ;
@@ -64,7 +64,7 @@ public class cs560project
     
     //=====================================================================================================
     
-    
+    //TO-DO: Try to implement user managed stack
     public static void DFS ( int level , int priorPartialSolution ) 
     {
       //--- recursive depth-first search to search for solution among all possible piece placement combinations 
@@ -92,11 +92,12 @@ public class cs560project
     
     
     //=====================================================================================================
+    //TO-DO: use the rest of inputs array to make the pieces
     public cs560project(int[] inputs){
       //--- instantiate and compute table for forward and co-inverse bitmap mapping(s)
         N = inputs[0];
         P = inputs[1];
-        
+
         mapTable  = new int[N][N][N] ;
         xInvTable = new int[N*N*N] ;
         yInvTable = new int[N*N*N] ;
@@ -115,12 +116,12 @@ public class cs560project
 
       //--- instantiate solution bitmap vector and solution character matrix  
       
-        solution = new int[7] ;
+        solution = new int[P] ;
         solutionCharMatrix = new char[N][N][N] ;  
             
       //--- instantiate the pieces comprising the puzzle, as an array of piece3D objects indexed from 0     
             
-        pieces = new piece3D[7] ; // for this hint, the puzzle is assumed to use 7 pieces      
+        pieces = new piece3D[P] ; // for this hint, the puzzle is assumed to use 7 pieces      
       
         pieces[0] = new piece3D( 'A' , 4 ) ;
         pieces[0].setCube(0,0,0,0) ;  // unit cubes comprising a piece are indexed from 0
@@ -165,7 +166,7 @@ public class cs560project
 
       //--- compute lists of possible positions for each piece
       
-        for ( int whichPiece = 0 ; whichPiece < 7 ; whichPiece++ ) 
+        for ( int whichPiece = 0 ; whichPiece < P ; whichPiece++ ) 
           pieces[whichPiece].findAllPossiblePositionsAsBitmaps( ) ;
         
       //--- DFS to examine all combinations of piece placement for each of seven pieeces to find solution
