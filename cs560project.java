@@ -40,19 +40,11 @@ public class cs560project
           }
 
       //--- output 3x3x3 char matrix showing pieceID's at each location, layer-by-layer in z- direction    
-          
-        /*System.out.println( "HERE IS THE SOLUTION TO THE PROBLEM INSTANCE DISTRIBUTED IN CLASS" ) ;
-        System.out.println( "AS SOLVED BY THE PROGRAM WHOSE SOURCE CODE IS GIVEN AS HINT #2" ) ;
-        System.out.println( ) ;
-        System.out.println( "EACH CELL OF THE 3x3x3 SOLUTION CUBE IS LABELED WITH THE CHAR PIECE-ID OF THE PIECE" ) ;
-        System.out.println( "TO WHICH THE UNIT CUBE OCCUPYING THAT CELL BELONGS (OUTPUT LAYER-BY-LAYER IN Z-ORDER)" ) ;
-        System.out.println( ) ;*/
-        
         for ( int z = 2 ; z >= 0 ; z-- ) 
           {
-            System.out.println( ) ;
-            System.out.println( "z = " + z + " layer" ) ;
-            System.out.println( ) ;
+            //System.out.println( ) ;
+            System.out.println( "\nz = " + z + " layer\n" ) ;
+            //System.out.println( ) ;
             for ( int x = 2 ; x >= 0 ; x-- ) 
               {
                 for ( int y = 2 ; y >= 0 ; y-- ) 
@@ -153,7 +145,49 @@ public class cs560project
           }
           pieceNum++;
         }
-
+        
+        /*
+        pieces[0] = new piece3D( 'A' , 4 ) ;
+        pieces[0].setCube(0,0,0,0) ;  // unit cubes comprising a piece are indexed from 0
+        pieces[0].setCube(1,1,0,0) ;
+        pieces[0].setCube(2,2,0,0) ;
+        pieces[0].setCube(3,0,0,1) ;
+      
+        pieces[1] = new piece3D( 'B' , 4 ) ;
+        pieces[1].setCube(0,0,0,0) ;
+        pieces[1].setCube(1,1,0,0) ;
+        pieces[1].setCube(2,1,0,1) ;
+        pieces[1].setCube(3,2,0,1) ;
+      
+        pieces[2] = new piece3D( 'C' , 3 ) ;
+        pieces[2].setCube(0,0,0,0) ;
+        pieces[2].setCube(1,1,0,0) ;
+        pieces[2].setCube(2,1,0,1) ;
+      
+        pieces[3] = new piece3D( 'D' , 5 ) ;
+        pieces[3].setCube(0,0,0,0) ;
+        pieces[3].setCube(1,1,0,0) ;
+        pieces[3].setCube(2,0,1,0) ;
+        pieces[3].setCube(3,1,1,0) ;
+        pieces[3].setCube(4,0,0,1) ;
+      
+        pieces[4] = new piece3D( 'E' , 5 ) ;
+        pieces[4].setCube(0,0,0,0) ;
+        pieces[4].setCube(1,1,0,0) ;
+        pieces[4].setCube(2,1,0,1) ;
+        pieces[4].setCube(3,0,1,0) ;
+        pieces[4].setCube(4,0,1,1) ;
+      
+        pieces[5] = new piece3D( 'F' , 3 ) ;
+        pieces[5].setCube(0,0,0,0) ;
+        pieces[5].setCube(1,1,0,0) ;
+        pieces[5].setCube(2,2,0,0) ;
+      
+        pieces[6] = new piece3D( 'G' , 3 ) ;
+        pieces[6].setCube(0,0,0,0) ;
+        pieces[6].setCube(1,0,1,0) ;
+        pieces[6].setCube(2,0,2,0) ;
+        */
       //--- compute lists of possible positions for each piece
       
         for ( int whichPiece = 0 ; whichPiece < P ; whichPiece++ ) 
@@ -172,6 +206,7 @@ public class cs560project
       inputs = parse.results;
       new cs560project(inputs);
       long time2 = System.currentTimeMillis();
-      System.out.println(time2-time);
+
+      System.out.println("\nRuntime in ms: "+(int)(time2-time));
     }
 }
