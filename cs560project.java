@@ -17,11 +17,8 @@ public class cs560project
     public static char[][][] solutionCharMatrix ;
 
     public static int[] inputs;
-    public static Queue<Integer> queue;
-    
     
     //=====================================================================================================
-    
     
     public static void outputSolution( ) 
     {
@@ -52,9 +49,7 @@ public class cs560project
                 System.out.println( ) ;
               }            
           }      
-
     }
-
     
     //=====================================================================================================
     
@@ -84,30 +79,14 @@ public class cs560project
             }
     }
     
-    
     //=====================================================================================================
-    //TO-DO: use the rest of inputs array to make the pieces
     public cs560project(int[] inputs){
       //--- instantiate and compute table for forward and co-inverse bitmap mapping(s)
-        queue = new LinkedList<Integer>();
 
-        for(int i : inputs)
-          queue.add((Integer)i);
+        N = inputs[0];
+        P = inputs[1];
 
-        N = (int) queue.remove();
-        P = (int) queue.remove();
-
-        Character[] chrs = {'A','B','C','D','E','F','G'};
-        Queue<Character> chars = new LinkedList<Character>();
-        
-        for (Character chr : chrs)
-          chars.add(chr);
-
-        Character[] pieceNames = new Character[P];
-
-        /*for (int i=2; i < P; i++){
-          pieces[i-2] = new piece3D(chars[i-2], inputs[i+1]);
-        }*/
+        char[] chrs = {'A','B','C','D','E','F','G'};
 
         mapTable  = new int[N][N][N] ;
         xInvTable = new int[N*N*N] ;
@@ -135,59 +114,17 @@ public class cs560project
         pieces = new piece3D[P] ; // for this hint, the puzzle is assumed to use 7 pieces   
 
         int pieceNum=0;
-        while (queue.size() > 0){
-          queue.remove();             //discard first element
-          Integer numCubes = queue.remove();
-          pieces[pieceNum] = new piece3D (chars.remove(), numCubes);
-
-          for(int j=0; j<numCubes; j++){
-            pieces[pieceNum].setCube(j,queue.remove(),queue.remove(),queue.remove());
+        int i = 2;
+        while (i < inputs.length){
+          i++;
+          int numCubes = inputs[i++];
+          pieces[pieceNum] = new piece3D (chrs[pieceNum], numCubes);
+          for (int j=0; j<numCubes; j++){
+            pieces[pieceNum].setCube(j, inputs[i++], inputs[i++], inputs[i++]);
           }
           pieceNum++;
         }
         
-        /*
-        pieces[0] = new piece3D( 'A' , 4 ) ;
-        pieces[0].setCube(0,0,0,0) ;  // unit cubes comprising a piece are indexed from 0
-        pieces[0].setCube(1,1,0,0) ;
-        pieces[0].setCube(2,2,0,0) ;
-        pieces[0].setCube(3,0,0,1) ;
-      
-        pieces[1] = new piece3D( 'B' , 4 ) ;
-        pieces[1].setCube(0,0,0,0) ;
-        pieces[1].setCube(1,1,0,0) ;
-        pieces[1].setCube(2,1,0,1) ;
-        pieces[1].setCube(3,2,0,1) ;
-      
-        pieces[2] = new piece3D( 'C' , 3 ) ;
-        pieces[2].setCube(0,0,0,0) ;
-        pieces[2].setCube(1,1,0,0) ;
-        pieces[2].setCube(2,1,0,1) ;
-      
-        pieces[3] = new piece3D( 'D' , 5 ) ;
-        pieces[3].setCube(0,0,0,0) ;
-        pieces[3].setCube(1,1,0,0) ;
-        pieces[3].setCube(2,0,1,0) ;
-        pieces[3].setCube(3,1,1,0) ;
-        pieces[3].setCube(4,0,0,1) ;
-      
-        pieces[4] = new piece3D( 'E' , 5 ) ;
-        pieces[4].setCube(0,0,0,0) ;
-        pieces[4].setCube(1,1,0,0) ;
-        pieces[4].setCube(2,1,0,1) ;
-        pieces[4].setCube(3,0,1,0) ;
-        pieces[4].setCube(4,0,1,1) ;
-      
-        pieces[5] = new piece3D( 'F' , 3 ) ;
-        pieces[5].setCube(0,0,0,0) ;
-        pieces[5].setCube(1,1,0,0) ;
-        pieces[5].setCube(2,2,0,0) ;
-      
-        pieces[6] = new piece3D( 'G' , 3 ) ;
-        pieces[6].setCube(0,0,0,0) ;
-        pieces[6].setCube(1,0,1,0) ;
-        pieces[6].setCube(2,0,2,0) ;
-        */
       //--- compute lists of possible positions for each piece
       
         for ( int whichPiece = 0 ; whichPiece < P ; whichPiece++ ) 
